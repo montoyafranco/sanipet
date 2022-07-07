@@ -16,4 +16,13 @@ public abstract class Patient {
     protected String generateNumber(){
         return null;
     }
+
+    public Patient(String clinicNumber,String name,String breed,Owner owner,boolean isVaccinated ,Date desparasization) {
+        this.clinicNumber = clinicNumber;
+        this.name = name;
+        this.breed = breed;
+        this.owner = owner;
+        this.isVaccinated = isVaccinated;
+        this.desparasization = desparasization
+    }
 }
