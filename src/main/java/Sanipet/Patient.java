@@ -23,6 +23,6 @@ public abstract class Patient {
         this.breed = breed;
         this.owner = owner;
         this.isVaccinated = isVaccinated;
-        this.desparasization = desparasization
+        this.desparasization = desparasization;
     }
 }
