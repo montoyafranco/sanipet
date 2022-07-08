@@ -1,12 +1,5 @@
 package appointments;
-
-enum AppointStatus {
-    STARTED, FINISHED, CANCELED, ABSENT
-}
-
-enum AppointType {
-    MEDICAL, SURGERY, AESTHETIC
-}
+import java.util.Calendar;
 
 public class Appointment {
     AppointType type;
@@ -18,4 +11,5 @@ public class Appointment {
         this.status = status;
         this.date = date;
     }
+    
 }
