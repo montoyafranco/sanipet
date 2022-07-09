@@ -1,5 +1,5 @@
 package appointments;
 
 public enum AppointStatus {
-    STARTED, FINISHED, CANCELED, ABSENT
+    NOT_STARTED, FINISHED, CANCELED, ABSENT
 }

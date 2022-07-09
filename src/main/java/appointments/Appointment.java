@@ -2,13 +2,19 @@ package appointments;
 
 public class Appointment {
     AppointType type;
-    AppointStatus status;
+    private AppointStatus status = AppointStatus.NOT_STARTED;
     String date;
 
-    public Appointment(AppointType type,AppointStatus status, String date) {
+    public Appointment(AppointType type, String date) {
         this.type = type;
-        this.status = status;
         this.date = date;
     }
-    
+
+    public AppointStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AppointStatus status) {
+        this.status = status;
+    }
 }
