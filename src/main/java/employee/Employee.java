@@ -2,35 +2,43 @@ package employee;
 
 import appointments.Appointment;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 import appointments.*;
 
-public abstract class Employee {
+enum EmployeeType {
+    DOCTOR, STYLIST
+}
+
+public class Employee {
     protected String name;
     protected String surname;
+    protected EmployeeType type;
+    protected List<String> workdays = new ArrayList<>();
 
-//  workdays = LMMS
     protected ArrayList<Appointment> schedule = new ArrayList<>();
 
-    /*
-    a  LMM
-    b  LJV
-    c  LMMS
-
-    9 / 7 / 2022
-    satuday;
-    employees.contains("S");
-    What doctor do you want?
-    1. c
-
-    c.newSchuduledAppointment();
-
-    * */
-
-    protected Employee(String name,String surname) {
+    protected Employee(String name,String surname, EmployeeType type) {
         this.name = name;
         this.surname = surname;
+        this.type = type;
+    }
+
+    public void setWorkDays(String ...days) {
+        workdays.addAll(Arrays.asList(days));
+    }
+
+    public List<String> getWorkDays() {
+        return workdays;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public EmployeeType getType() {
+        return this.type;
     }
 
     protected void newSchuduledAppointment(AppointType type, String date) {
