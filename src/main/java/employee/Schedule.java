@@ -1,6 +1,6 @@
 package employee;
 
-import Medicines.Medicine;
+import Medicines.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Schedule {
     private static void defaultStaff() {
         Employee doctor1 = new Employee("David", "Rueda", EmployeeType.DOCTOR);
         doctor1.setWorkDays("Monday", "Tuesday", "Wednesday");
-        Employee doctor2 = new Employee("Agustin", "Montoya", EmployeeType.DOCTOR);        
+        Employee doctor2 = new Employee("Agustin", "Montoya", EmployeeType.DOCTOR);
         doctor2.setWorkDays("Monday", "Tuesday", "Wednesday");
         Employee doctor3 = new Employee("Karlo", "Martinez", EmployeeType.DOCTOR);
         doctor3.setWorkDays("Thursday", "Friday", "Saturday");
@@ -34,7 +34,7 @@ public class Schedule {
 
     private static void defaultMedicines() {
 //         name, presentation,String usage,int quantity,int stock
-        
+        Medicine medicine1 = new Medicine("Ibuprofen", Presentation.PILLS, "human", 64,25);
     }
 
     public List<Employee> getEmployees() {

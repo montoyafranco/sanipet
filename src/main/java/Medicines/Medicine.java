@@ -1,9 +1,5 @@
 package Medicines;
 
-enum Presentation {
-    PILLS, SYRUP, PET_CARE
-}
-
 public class Medicine {
     protected String name;
     protected Presentation presentation;
