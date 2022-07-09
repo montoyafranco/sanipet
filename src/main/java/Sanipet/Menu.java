@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static double principal(){
-        double userInput;
-
+    public static int principal(){
+        int userInput;
         System.out.println(
               """
                 Welcome to the Sanipet Organizer
@@ -25,7 +24,7 @@ public class Menu {
 
         System.out.println("Choose an option: ");
         Scanner scanner = new Scanner(System.in);
-        userInput = scanner.nextDouble();
+        userInput = scanner.nextInt();
 
 
         return userInput;

@@ -10,14 +10,38 @@ public class Principal {
 
     public static void main(String[] args) {
         // Create logic and option menu here
-        double optSelected = Menu.principal();
+        int optSelected;
 
-        System.out.println("You Selected "+ optSelected);
+        do {
+//          System.out.println("You Selected "+ optSelected);
+            optSelected = Menu.principal();
+            switch(optSelected) {
+                case 1:
+                    owners.add(Menu.newUser());
+                break;
+                case 2:
+                break;
+                case 21:
+                break;
+                case 22:
+                break;
+                case 23:
+                break;
+                case 24:
+                break;
+                case 3:
+                break;
+                case 4:
+                break;
+                case 5:
+                break;
+                default:
+                    System.out.println("Please select a valid option!!");
+            }
+        } while(optSelected != 5);
 
-        if(optSelected == 1.0) {
-            owners.add(Menu.newUser());
+        for(Owner ow : owners) {
+          System.out.println(ow.getName());
         }
-
-        System.out.println(owners.get(0).toString());
     }
 }
