@@ -1,5 +1,4 @@
 package appointments;
-import java.util.Calendar;
 
 public class Appointment {
     AppointType type;
