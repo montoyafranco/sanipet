@@ -45,4 +45,53 @@ public class Menu {
         return newOwner;
     }
 
+    public static Patient newPatient(Owner owner) {
+        PetType pet = askPetType();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your pet's name: " );
+        String name = scanner.nextLine();
+        System.out.println("Enter your pet's breed: ");
+        String breed = scanner.nextLine();
+        boolean isVaccinated = askYesNo("Is your pet vaccinated? [Y]/[N]");
+
+        return new Patient(pet, name, breed, owner, isVaccinated);
+    }
+
+    public static boolean askYesNo(String question) {
+        Scanner input = new Scanner(System.in);
+        String answer;
+        boolean askAgain;
+
+        do {
+            System.out.print(question);
+            answer = input.next().trim().toUpperCase();
+            askAgain = !"Y".equals(answer) && !"N".equals(answer);
+        } while (askAgain);
+
+        return "Y".equals(answer);
+    }
+
+    private static PetType askPetType() {
+        Scanner scanner = new Scanner(System.in);
+        int userInput;
+        PetType pet;
+
+        do {
+            System.out.println(
+                    """
+                    Is your pet a cat or a dog?
+                         1. Cat    2. Dog
+                    """
+            );
+            userInput = scanner.nextInt();
+
+            pet = userInput == 1 ?
+                    PetType.CAT : PetType.DOG;
+
+        } while(userInput < 1 || userInput > 2);
+
+        return pet;
+    }
 }
