@@ -3,7 +3,7 @@ package Sanipet;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public abstract class Patient {
+public class Patient {
 
     //attributes
     private Random rnd = new Random();
@@ -14,10 +14,12 @@ public abstract class Patient {
     protected Owner owner;
     protected boolean isVaccinated;
     protected LocalDateTime desparasization;
+    protected PetType pet;
 
-    protected Patient(String name, String breed, Owner owner, boolean isVaccinated) {
+    protected Patient(PetType pet, String name, String breed, Owner owner, boolean isVaccinated) {
         this.clinicNumber = generateNumber();
         this.name = name;
+        this.pet = pet;
         this.breed = breed;
         this.owner = owner;
         this.isVaccinated = isVaccinated;

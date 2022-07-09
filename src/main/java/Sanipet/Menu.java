@@ -30,7 +30,7 @@ public class Menu {
         return userInput;
     }
 
-    public static Owner newUser() {
+    public static Owner newOwner() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your DNI: ");
         String dni = scanner.nextLine();
@@ -40,20 +40,8 @@ public class Menu {
         String cellphone = scanner.nextLine();
         System.out.println("Enter your age: ");
         int age = scanner.nextInt();
-        scanner.close();
 
         Owner newOwner = new Owner(dni,name, cellphone, age);
-        scanner.close();
-        System.out.println(            String.format(
-                """
-                Owner name is  %s
-                Owner dni is %s
-                Owner cellphone is %s
-                Owner age is %d
-                """,
-                name, dni, cellphone, age
-            )
-       );
         return newOwner;
     }
 
