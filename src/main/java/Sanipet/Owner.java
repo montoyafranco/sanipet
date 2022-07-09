@@ -6,7 +6,10 @@ public class Owner {
     private String cellphone;
     private int age;
 
-    public Owner(String DNI, String name,String cellphone,int age) {
+    public Owner(String DNI, String name,String cellphone,int age) throws Exception {
+        if(age < 18) {
+            throw new Exception("The owner must be 18 or older!");
+        }
         this.DNI = DNI;
         this.name = name;
         this.cellphone = cellphone;

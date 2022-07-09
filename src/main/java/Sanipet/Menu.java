@@ -1,5 +1,8 @@
 package Sanipet;
 
+import Medicines.Medicine;
+import employee.Resources;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -26,7 +29,33 @@ public class Menu {
                 """);
         Creation.AppointmentOptions(appointOption);
     }
-
+    
+    public static void showStock() {
+        System.out.print(
+        """
+           Name  ||Stock|| Present.
+        ------------------------------
+        """);
+        for(Medicine med : Resources.getMedicines()) {
+            System.out.print(
+                String.format(
+                    """
+                    %s || %d || %s
+                    """,
+                    med.getName(), med.getStock(), med.getPresentation().toString()
+                )
+            );
+        }
+    }
+    
+//    public static void showEmployee() {
+//        System.out.print(
+//        """
+//           Name  || Surname || Present.
+//        ------------------------------
+//        """);
+//    }
+    
     public static boolean askYesNo(String question) {
         Scanner input = new Scanner(System.in);
         String answer;

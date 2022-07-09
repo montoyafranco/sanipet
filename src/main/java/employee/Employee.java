@@ -1,6 +1,8 @@
 package employee;
 
 import appointments.Appointment;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -41,7 +43,7 @@ public class Employee {
         return this.type;
     }
 
-    protected void newSchuduledAppointment(AppointType type, String date) {
+    protected void newSchuduledAppointment(AppointType type, LocalDate date) {
         Appointment newAppointment = new Appointment(type, date);
         this.schedule.add(newAppointment);
     }

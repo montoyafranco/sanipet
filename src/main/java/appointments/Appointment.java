@@ -1,11 +1,13 @@
 package appointments;
 
+import java.time.LocalDate;
+
 public class Appointment {
     AppointType type;
     private AppointStatus status = AppointStatus.NOT_STARTED;
-    String date;
+    LocalDate date;
 
-    public Appointment(AppointType type, String date) {
+    public Appointment(AppointType type, LocalDate date) {
         this.type = type;
         this.date = date;
     }

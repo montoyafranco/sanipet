@@ -1,9 +1,12 @@
 package Sanipet;
 
+import java.time.LocalDate;
+
 import appointments.AppointStatus;
 import appointments.AppointType;
 import appointments.Appointment;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public final class Creation {
@@ -18,7 +21,12 @@ public final class Creation {
     System.out.println("Enter your age: ");
     int age = scanner.nextInt();
 
-    return new Owner(dni,name, cellphone, age);
+    try {
+      return new Owner(dni,name, cellphone, age);
+    } catch (Exception err) {
+      err.printStackTrace();
+    }
+    return null;
   }
 
   public static Patient newPatient(Owner owner) {
@@ -39,9 +47,19 @@ public final class Creation {
     switch (appointOption) {
       case 1:
         System.out.println("Creating appointment");
-
         System.out.println("What type of appointment do your pet needs?");
         AppointType appointType = askAppointmentType();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose a year");
+        int year = sc.nextInt();
+        System.out.println("Choose a month");
+        int month = sc.nextInt();
+        System.out.println("Choose a day ");
+        int day = sc.nextInt();
+        LocalDate date = LocalDate.of(year, month, day);
+        System.out.println(date);
+
+
 //      Ask for doctors Kevin => Kevin.newSchuduledAppointment(st, dt);
 
         break;
