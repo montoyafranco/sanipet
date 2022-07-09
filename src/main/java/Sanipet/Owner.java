@@ -12,6 +12,18 @@ public class Owner {
         this.cellphone = cellphone;
         this.age = age;
     }
+    
+    public String toString() {
+        return String.format(
+           """
+           Owner name is  %s
+           Owner dni is %s
+           Owner cellphone is %s
+           Owner age is %d
+           """,
+           this.name, this.DNI, this.cellphone, this.age
+       );
+    }
 
     public String getDNI() {
         return DNI;
