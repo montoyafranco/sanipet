@@ -9,10 +9,6 @@ import java.util.Arrays;
 
 import appointments.*;
 
-enum EmployeeType {
-    DOCTOR, STYLIST
-}
-
 public class Employee {
     protected String name;
     protected String surname;
@@ -21,7 +17,7 @@ public class Employee {
 
     protected ArrayList<Appointment> schedule = new ArrayList<>();
 
-    protected Employee(String name,String surname, EmployeeType type) {
+    protected Employee(String name, String surname, EmployeeType type) {
         this.name = name;
         this.surname = surname;
         this.type = type;

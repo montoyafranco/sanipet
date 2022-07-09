@@ -18,15 +18,15 @@ public final class Resources {
     private static void defaultStaff() {
         employees.clear();
         Employee doctor1 = new Employee("David", "Rueda", EmployeeType.DOCTOR);
-        doctor1.setWorkDays("Monday", "Tuesday", "Wednesday");
+        doctor1.setWorkDays("MONDAY", "TUESDAY", "WEDNESDAY");
         Employee doctor2 = new Employee("Agustin", "Montoya", EmployeeType.DOCTOR);
-        doctor2.setWorkDays("Monday", "Tuesday", "Wednesday");
+        doctor2.setWorkDays("MONDAY", "TUESDAY", "WEDNESDAY");
         Employee doctor3 = new Employee("Karlo", "Martinez", EmployeeType.DOCTOR);
-        doctor3.setWorkDays("Thursday", "Friday", "Saturday");
+        doctor3.setWorkDays("THURSDAY", "FRIDAY", "SATURDAY");
         Employee stylist1 = new Employee("Jhon", "Doe", EmployeeType.STYLIST);
-        stylist1.setWorkDays("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday");
+        stylist1.setWorkDays("MONDAY", "TUESDAY", "WEDNESDAY","THURSDAY","FRIDAY","SATURDAY");
         Employee stylist2 = new Employee("Tomas", "Keylor", EmployeeType.STYLIST);
-        stylist2.setWorkDays("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday");
+        stylist2.setWorkDays("MONDAY", "TUESDAY", "WEDNESDAY","THURSDAY","FRIDAY","SATURDAY");
         employees.add(doctor1);
         employees.add(doctor2);
         employees.add(doctor3);
@@ -46,8 +46,14 @@ public final class Resources {
         medicines.add(medicine4);
     }
 
-    public static List<Employee> getEmployees() {
-        return employees;
+    public static List<Employee> getEmployees(EmployeeType type) {
+        ArrayList<Employee> filterEmployees = new ArrayList<>();
+        for(Employee emp : employees) {
+            if(emp.getType() == type) {
+                filterEmployees.add(emp);
+            }
+        }
+        return filterEmployees;
     }
 
     public static List<Medicine> getMedicines() {

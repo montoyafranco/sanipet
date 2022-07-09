@@ -1,13 +1,14 @@
 package Sanipet;
 
 import java.time.LocalDate;
+import java.time.DayOfWeek;
 
-import appointments.AppointStatus;
-import appointments.AppointType;
-import appointments.Appointment;
+import appointments.*;
+import employee.*;
 
-import java.util.Date;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Creation {
   public static Owner newOwner() {
@@ -47,17 +48,15 @@ public final class Creation {
     switch (appointOption) {
       case 1:
         System.out.println("Creating appointment");
-        System.out.println("What type of appointment do your pet needs?");
         AppointType appointType = askAppointmentType();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Choose a year");
-        int year = sc.nextInt();
-        System.out.println("Choose a month");
-        int month = sc.nextInt();
-        System.out.println("Choose a day ");
-        int day = sc.nextInt();
-        LocalDate date = LocalDate.of(year, month, day);
-        System.out.println(date);
+        LocalDate date = askForDate();
+        DayOfWeek day = date.getDayOfWeek();
+
+        List<Employee> employeesCapable = filterEmployees(appointType);
+
+        List<Employee> employeesAvailable = filterAvailebleEmployees(day, employeesCapable );
+
+
 
 
 //      Ask for doctors Kevin => Kevin.newSchuduledAppointment(st, dt);
@@ -77,7 +76,44 @@ public final class Creation {
     }
   }
 
+  static LocalDate askForDate() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Choose a year");
+    int year = sc.nextInt();
+    System.out.println("Choose a month");
+    int month = sc.nextInt();
+    System.out.println("Choose a day ");
+    int day = sc.nextInt();
+    return LocalDate.of(year, month, day);
+  }
+
+  static List<Employee> filterAvailebleEmployees(DayOfWeek day, List<Employee> employees) {
+    List<Employee> employeesAvailable = new ArrayList<>();
+     for(Employee emp : employees) {
+          List<String> workDays = emp.getWorkDays();
+          for(int i = 0; i < workDays.size(); i++) {
+            if(day.toString().equals(workDays.get(i))) {
+                employeesAvailable.add(emp);
+            }
+          }
+        }
+     return employeesAvailable;
+  }
+
+  static List<Employee> filterEmployees(AppointType appointType) {
+    List<Employee> employees;
+
+    if(appointType == AppointType.AESTHETIC) {
+      employees = Resources.getEmployees(EmployeeType.STYLIST);
+    } else {
+      employees = Resources.getEmployees(EmployeeType.DOCTOR);
+    }
+
+    return employees;
+  }
+
   static AppointType askAppointmentType() {
+    System.out.println("What type of appointment do your pet needs?");
     Scanner scanner = new Scanner(System.in);
     int userInput;
     AppointType type;
