@@ -14,12 +14,43 @@ public class Principal {
 //
 //        System.out.println(cat1.desparasization);
 
+        double optSelected = menu();
 
+        System.out.println("You Selected "+ optSelected);
 
+        if(optSelected == 1.0) {
+            // Do register User
 
+        }
     }
 
-//    private static double
+    private static double menu(){
+        double userInput;
+
+        System.out.println(
+              """
+                Welcome to the Sanipet Organizer
+                Choose an option:
+                1. Register patient.
+                2. Appointment:
+                    2.1 Create appointment:
+                    2.2 Update appointment.
+                    2.3 Cancel appointment.
+                    2.4 Filter by day.
+                3. Billing.
+                4. Medicine stock.
+                5. Exit.
+              """
+            );
+
+        System.out.println("Choose an option: ");
+        Scanner scanner = new Scanner(System.in);
+        userInput = scanner.nextDouble();
+
+        return userInput;
+    }
+
+
 //    int userInput = 0;
 //        while(userInput != 5) {
 //            System.out.println(
