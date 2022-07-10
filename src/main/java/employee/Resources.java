@@ -4,6 +4,7 @@ import Medicines.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public final class Resources {
@@ -54,6 +55,34 @@ public final class Resources {
             }
         }
         return filterEmployees;
+    }
+
+    public static Medicine selectMedicines() {
+        System.out.println("Please select a medicine: ");
+        int i = 1;
+        System.out.println(
+          """
+              Idx ||   name   ||   stock   ||   presentation
+          """);
+        for(Medicine med : medicines) {
+          System.out.println(
+            String.format(
+              """
+              %d. %s  || %s || %s
+              """,
+              i,
+              med.getName(),
+              med.getStock(),
+              med.getPresentation()
+            )
+          );
+          i++;
+        }
+
+        Scanner sc = new Scanner(System.in);
+
+        int userInput = sc.nextInt();
+        return medicines.get(userInput-1);
     }
 
     public static List<Medicine> getMedicines() {

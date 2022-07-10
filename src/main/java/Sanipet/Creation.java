@@ -47,6 +47,7 @@ public final class Creation {
   public static void appointmentOptions(int appointOption) {
     switch (appointOption) {
       case 1 -> {
+        Patient pet = Principal.selectPatient();
         AppointType appointType = askAppointmentType();
         LocalDate date = askForDate();
         DayOfWeek day = date.getDayOfWeek();
@@ -57,7 +58,7 @@ public final class Creation {
         List<Employee> employeesCapable = filterEmployees(appointType);
         List<Employee> employeesAvailable = filterAvailebleEmployees(day, employeesCapable);
         System.out.println("Creating appointment....");
-        chooseADoctor(employeesAvailable, appointType, date);
+        chooseADoctor(employeesAvailable, appointType, date, pet);
       }
       case 2 -> {
         Appointment selectedAppointment = selectAppointment();
@@ -148,7 +149,7 @@ public final class Creation {
     return LocalDate.of(year, month, day);
   }
 
-  static void chooseADoctor(List<Employee> employeesAvailable, AppointType appointType, LocalDate date) {
+  static void chooseADoctor(List<Employee> employeesAvailable, AppointType appointType, LocalDate date, Patient pet) {
     System.out.println("Choose your doctor: ");
     System.out.println("----------------------");
     int i = 1;
@@ -167,7 +168,7 @@ public final class Creation {
     int indexDoctor = sc.nextInt();
     Employee doctorChosen = employeesAvailable.get(indexDoctor - 1);
 
-    doctorChosen.newSchuduledAppointment(appointType, date);
+    doctorChosen.newSchuduledAppointment(appointType, date, pet);
     System.out.println("You have chosen " + doctorChosen.getFullName());
   }
 

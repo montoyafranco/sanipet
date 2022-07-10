@@ -6,20 +6,22 @@ import java.util.ArrayList;
 
 import employee.Employee;
 import Sanipet.Patient;
+import Medicines.Medicine;
 
 public class Appointment {
-    private static List<Appointment> appointments = new ArrayList<>();
+    private static final List<Appointment> appointments = new ArrayList<>();
     private final AppointType type;
     private AppointStatus status = AppointStatus.NOT_STARTED;
     private final LocalDate date;
     private final Employee specialist;
     private final Patient pet;
+    private Medicine medicine;
 
     public Appointment(Patient pet, AppointType type, LocalDate date, Employee especialist) {
         this.type = type;
         this.date = date;
         this.pet = pet;
-        this.specialist =  especialist;
+        this.specialist = especialist;
         appointments.add(this);
     }
 
@@ -28,7 +30,15 @@ public class Appointment {
     }
 
     public void setStatus(AppointStatus status) {
+        if(status == AppointStatus.FINISHED) {
+            this.specialist.finishAppointment(this);
+        }
         this.status = status;
+    }
+    
+    public void setMedicine(Medicine med) {
+        med.reduceStock();
+        this.medicine = med;
     }
 
     public static List<Appointment> getAppointments() {
@@ -55,6 +65,10 @@ public class Appointment {
 
     public String getType() {
         return this.type.toString();
+    }
+    
+    public Patient getPet() {
+        return this.pet;
     }
 
 }

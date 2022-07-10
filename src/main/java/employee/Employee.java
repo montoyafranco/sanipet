@@ -1,13 +1,14 @@
 package employee;
 
-import appointments.Appointment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import Sanipet.Patient;
 import appointments.*;
+import Medicines.Medicine;
 
 public class Employee {
     protected String name;
@@ -20,6 +21,11 @@ public class Employee {
         this.name = name;
         this.surname = surname;
         this.type = type;
+    }
+
+    public void finishAppointment(Appointment appoint) {
+        Medicine selectedMedicine = Resources.selectMedicines();
+        appoint.setMedicine(selectedMedicine);
     }
 
     public void setWorkDays(String ...days) {
@@ -42,8 +48,8 @@ public class Employee {
         return this.type;
     }
 
-    public void newSchuduledAppointment(AppointType appointmentType, LocalDate date) {
-        Appointment newAppointment = new Appointment(appointmentType, date, this);
+    public void newSchuduledAppointment(AppointType appointmentType, LocalDate date, Patient pet) {
+        Appointment newAppointment = new Appointment(pet, appointmentType, date, this);
         this.schedule.add(newAppointment);
     }
 }

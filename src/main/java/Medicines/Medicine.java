@@ -1,11 +1,11 @@
 package Medicines;
 
 public class Medicine {
-    protected String name;
-    protected Presentation presentation;
-    protected String usage;
-    protected String quantity;
-    protected int stock;
+    private String name;
+    private Presentation presentation;
+    private String usage;
+    private String quantity;
+    private int stock;
 
     public Medicine( String name,Presentation presentation,String usage,String quantity,int stock) {
         this.usage = usage;
@@ -25,5 +25,9 @@ public class Medicine {
 
     public Presentation getPresentation() {
         return this.presentation;
+    }
+
+    public void reduceStock() {
+        this.stock--;
     }
 }

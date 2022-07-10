@@ -2,6 +2,7 @@ package Sanipet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Medicines.Medicine;
 import appointments.*;
@@ -39,6 +40,7 @@ public class Principal {
                      Menu.appointmentMenu();
                      break;
                  case 3:
+
                     break;
                     case 4:
                       Menu.showStock();
@@ -60,7 +62,8 @@ public class Principal {
         System.out.flush();
     }
 
-    public static void selectPatient() {
+    public static Patient selectPatient() {
+        System.out.println("Please select the your pet: ");
         int i = 1;
         System.out.println(
           """
@@ -80,6 +83,11 @@ public class Principal {
           );
           i++;
         }
+
+        Scanner sc = new Scanner(System.in);
+
+        int userInput = sc.nextInt();
+        return pets.get(userInput-1);
     }
 
     public static void showPatients() {
