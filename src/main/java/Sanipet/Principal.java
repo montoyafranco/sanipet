@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Medicines.Medicine;
+import appointments.*;
 import employee.*;
 
 public class Principal {
@@ -45,9 +46,9 @@ public class Principal {
  //                 break;
  //                 case 24:
  //                 break;
- //                 case 3:
- //                 break;
-                  case 4:
+//                  case 3:
+//                  break;
+                    case 4:
                       Menu.showStock();
                     break;
                   case 5:

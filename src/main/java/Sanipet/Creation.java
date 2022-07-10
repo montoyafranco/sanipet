@@ -44,36 +44,55 @@ public final class Creation {
     return new Patient(pet, name, breed, owner, isVaccinated);
   }
 
-  public static void AppointmentOptions(int appointOption) {
+  public static void appointmentOptions(int appointOption) {
     switch (appointOption) {
-      case 1:
-        System.out.println("Creating appointment");
+      case 1 -> {
         AppointType appointType = askAppointmentType();
         LocalDate date = askForDate();
         DayOfWeek day = date.getDayOfWeek();
-
+        if (day == DayOfWeek.SUNDAY) {
+          System.err.println("We don't offer services on Sunday!!");
+          return;
+        }
         List<Employee> employeesCapable = filterEmployees(appointType);
-
-        List<Employee> employeesAvailable = filterAvailebleEmployees(day, employeesCapable );
-
-
-
-
-//      Ask for doctors Kevin => Kevin.newSchuduledAppointment(st, dt);
-
-        break;
-      case 2:
-        System.out.println("Updating appointment");
-        break;
-      case 3:
-        System.out.println("Cancel appointment");
-        break;
-      case 4:
-        System.out.println("Filtering by days");
-        break;
-      default:
-        System.out.println("Wrong option");
+        List<Employee> employeesAvailable = filterAvailebleEmployees(day, employeesCapable);
+        System.out.println("Creating appointment....");
+        chooseADoctor(employeesAvailable, appointType, date);
+      }
+      case 2 -> System.out.println("Updating appointment");
+      case 3 -> {
+        System.out.println("Cancel appointment");;
+      }
+      case 4 -> System.out.println("Filtering by days");
+      default -> System.out.println("Wrong option");
     }
+  }
+  
+  static Appointment selectAppointment() {
+    List<Appointment> appointments = Appointment.getAppointments();
+    int i = 1;
+    
+    System.out.println("Please choose an Appointment: ");
+    System.out.println("Idx || Specialist || Type || Date ");
+    for(Appointment apt : Appointment.getAppointments()) {
+      System.out.println(
+        String.format(
+          """
+          %d. %s  || %s || %s               
+          """,
+          i,
+          apt.getSpecialist().getFullName(),
+          apt.getType(),
+          apt.getDate()
+        )
+      );
+      i++;
+    }
+    
+    Scanner sc = new Scanner(System.in);
+    
+    int userInput = sc.nextInt();
+    return appointments.get(userInput-1);
   }
 
   static LocalDate askForDate() {
@@ -85,6 +104,29 @@ public final class Creation {
     System.out.println("Choose a day ");
     int day = sc.nextInt();
     return LocalDate.of(year, month, day);
+  }
+
+  static void chooseADoctor(List<Employee> employeesAvailable, AppointType appointType, LocalDate date) {
+    System.out.println("Choose your doctor: ");
+    System.out.println("----------------------");
+    int i = 1;
+    for(Employee emp : employeesAvailable) {
+      System.out.print(
+        String.format(
+        """
+        %d. %s
+        """, i, emp.getFullName()
+        )
+      );
+      i++;
+    }
+
+    Scanner sc = new Scanner(System.in);
+    int indexDoctor = sc.nextInt();
+    Employee doctorChosen = employeesAvailable.get(indexDoctor - 1);
+
+    doctorChosen.newSchuduledAppointment(appointType, date);
+    System.out.println("You have chosen " + doctorChosen.getFullName());
   }
 
   static List<Employee> filterAvailebleEmployees(DayOfWeek day, List<Employee> employees) {

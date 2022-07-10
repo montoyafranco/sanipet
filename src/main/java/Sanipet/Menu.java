@@ -27,7 +27,7 @@ public class Menu {
                 3. Cancel appointment.
                 4. Filter by day.
                 """);
-        Creation.AppointmentOptions(appointOption);
+        Creation.appointmentOptions(appointOption);
     }
     
     public static void showStock() {

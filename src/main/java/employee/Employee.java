@@ -14,7 +14,6 @@ public class Employee {
     protected String surname;
     protected EmployeeType type;
     protected List<String> workdays = new ArrayList<>();
-
     protected ArrayList<Appointment> schedule = new ArrayList<>();
 
     protected Employee(String name, String surname, EmployeeType type) {
@@ -35,12 +34,16 @@ public class Employee {
         return this.name;
     }
 
+    public String getFullName() {
+        return this.name + " " + this.surname;
+    }
+
     public EmployeeType getType() {
         return this.type;
     }
 
-    protected void newSchuduledAppointment(AppointType type, LocalDate date) {
-        Appointment newAppointment = new Appointment(type, date);
+    public void newSchuduledAppointment(AppointType appointmentType, LocalDate date) {
+        Appointment newAppointment = new Appointment(appointmentType, date, this);
         this.schedule.add(newAppointment);
     }
 }
