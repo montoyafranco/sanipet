@@ -8,10 +8,10 @@ import employee.Employee;
 
 public class Appointment {
     private static List<Appointment> appointments = new ArrayList<>();
-    private AppointType type;
+    private final AppointType type;
     private AppointStatus status = AppointStatus.NOT_STARTED;
-    private LocalDate date;
-    private Employee specialist;
+    private final LocalDate date;
+    private final Employee specialist;
 
     public Appointment(AppointType type, LocalDate date, Employee especialist) {
         this.type = type;
@@ -30,6 +30,16 @@ public class Appointment {
 
     public static List<Appointment> getAppointments() {
         return appointments;
+    }
+    
+    public static List<Appointment> filterAppointmentsByDate(LocalDate date) {
+        List<Appointment> filteredAppointments = new ArrayList<>();
+        for(Appointment apt : appointments) {
+            if(date.toString().equals(apt.getDate())) {
+                filteredAppointments.add(apt);
+            }
+        }
+        return filteredAppointments;
     }
 
     public Employee getSpecialist() {

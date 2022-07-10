@@ -59,40 +59,82 @@ public final class Creation {
         System.out.println("Creating appointment....");
         chooseADoctor(employeesAvailable, appointType, date);
       }
-      case 2 -> System.out.println("Updating appointment");
-      case 3 -> {
-        System.out.println("Cancel appointment");;
+      case 2 -> {
+        Appointment selectedAppointment = selectAppointment();
+        int updateInput = updateAppointmentStatus(selectedAppointment);
+
+        if(updateInput == 1) {
+            selectedAppointment.setStatus(AppointStatus.FINISHED);
+        } else selectedAppointment.setStatus(AppointStatus.ABSENT);
       }
-      case 4 -> System.out.println("Filtering by days");
+      case 3 -> {
+        Appointment selectedAppointment = selectAppointment();
+        selectedAppointment.setStatus(AppointStatus.CANCELED);
+
+        System.out.println("Canceling appointment...");
+      }
+      case 4 -> {
+        System.out.println("Filtering by date");
+        LocalDate date = askForDate();
+        List<Appointment> filterAppoint = Appointment.filterAppointmentsByDate(date);
+        showAppointments(filterAppoint);
+      }
       default -> System.out.println("Wrong option");
     }
   }
-  
+
+  static int updateAppointmentStatus(Appointment selectedAppointment) {
+    int inputUser;
+    do {
+        System.out.println(
+        """
+        ________________________________________________________
+        Choose an option to change the status of the Appointment
+        --------------------------------------------------------
+                      1. FINISHED    2. ABSENT
+        """
+      );
+
+      Scanner sc = new Scanner(System.in);
+      inputUser = sc.nextInt();
+    } while(inputUser < 1 || inputUser > 2);
+
+    return inputUser;
+  }
+
+
   static Appointment selectAppointment() {
     List<Appointment> appointments = Appointment.getAppointments();
-    int i = 1;
-    
     System.out.println("Please choose an Appointment: ");
-    System.out.println("Idx || Specialist || Type || Date ");
-    for(Appointment apt : Appointment.getAppointments()) {
+    showAppointments(appointments);
+
+    Scanner sc = new Scanner(System.in);
+
+    int userInput = sc.nextInt();
+    return appointments.get(userInput-1);
+  }
+
+  static void showAppointments(List<Appointment> appointments) {
+    int i = 1;
+    System.out.println(
+      """
+          Idx ||   Specialist   ||   Type   ||   Date   ||   Status
+      """);
+    for(Appointment apt : appointments) {
       System.out.println(
         String.format(
           """
-          %d. %s  || %s || %s               
+          %d. %s  || %s || %s || %s
           """,
           i,
           apt.getSpecialist().getFullName(),
           apt.getType(),
-          apt.getDate()
+          apt.getDate(),
+          apt.getStatus()
         )
       );
       i++;
     }
-    
-    Scanner sc = new Scanner(System.in);
-    
-    int userInput = sc.nextInt();
-    return appointments.get(userInput-1);
   }
 
   static LocalDate askForDate() {
