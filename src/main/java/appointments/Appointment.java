@@ -35,9 +35,10 @@ public class Appointment {
         }
         this.status = status;
     }
-    
+
     public void setMedicine(Medicine med) {
         med.reduceStock();
+        this.pet.getMedicinesToPay().add(med);
         this.medicine = med;
     }
 
@@ -66,7 +67,7 @@ public class Appointment {
     public String getType() {
         return this.type.toString();
     }
-    
+
     public Patient getPet() {
         return this.pet;
     }

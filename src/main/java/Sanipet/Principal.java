@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import Medicines.Medicine;
-import appointments.*;
 import employee.*;
 
 public class Principal {
@@ -40,7 +39,9 @@ public class Principal {
                      Menu.appointmentMenu();
                      break;
                  case 3:
-
+                    Patient pet = selectPatient();
+                    Medicine med = selectMedicine(pet);
+                    pet.payMedicine(med);
                     break;
                     case 4:
                       Menu.showStock();
@@ -62,29 +63,52 @@ public class Principal {
         System.out.flush();
     }
 
+    public static Medicine selectMedicine(Patient pet) {
+        var medicines = pet.getMedicinesToPay();
+        if(medicines.size() == 0) {
+            System.out.println("You are up to date with your bills!!");
+            return null;
+        }
+        System.out.println("Choose what bill you want to pay: ");
+        int i = 1;
+        for(Medicine med : medicines) {
+            System.out.println(
+                String.format(
+                    """
+                  %d. %s || %s || %d
+                """, i, med.getQuantity(), med.getName(), med.getPrice()
+                )
+            );
+        }
+        Scanner sc = new Scanner(System.in);
+        int userInput = sc.nextInt();
+
+        return medicines.get(userInput-1);
+    }
+
     public static Patient selectPatient() {
         System.out.println("Please select the your pet: ");
-        int i = 1;
+                            int i = 1;
         System.out.println(
           """
               Idx ||   name   ||   owner   ||   type
           """);
         for(Patient pet : pets) {
           System.out.println(
-            String.format(
-              """
-              %d. %s  || %s || %s
+                String.format(
+          """
+          %d. %s  || %s || %s
               """,
-              i,
+                          i,
               pet.name,
               pet.owner.getName(),
               pet.pet
             )
-          );
+  );
           i++;
         }
 
-        Scanner sc = new Scanner(System.in);
+Scanner sc = new Scanner(System.in);
 
         int userInput = sc.nextInt();
         return pets.get(userInput-1);

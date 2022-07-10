@@ -5,6 +5,7 @@ public class Owner {
     private String name;
     private String cellphone;
     private int age;
+    
 
     public Owner(String DNI, String name,String cellphone,int age) throws Exception {
         if(age < 18) {
