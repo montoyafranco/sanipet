@@ -38,16 +38,8 @@ public class Principal {
                  case 2:
                      Menu.appointmentMenu();
                      break;
- //                 case 21:
- //                 break;
- //                 case 22:
- //                 break;
- //                 case 23:
- //                 break;
- //                 case 24:
- //                 break;
-//                  case 3:
-//                  break;
+                 case 3:
+                    break;
                     case 4:
                       Menu.showStock();
                     break;
@@ -56,12 +48,6 @@ public class Principal {
                  default:
                      System.out.println("Please select a valid option!!");
              }
-//             for(Patient pet : pets) {
-//                 System.out.println(
-//                         String.format("%s's owner is %s",
-//                                 pet.name, pet.owner.getName())
-//                 );
-//             }
              seeAgain = Menu.askYesNo(
                      "Do you want tu see the menu again?? [Y]/[N]"
              );
@@ -72,5 +58,36 @@ public class Principal {
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static void selectPatient() {
+        int i = 1;
+        System.out.println(
+          """
+              Idx ||   name   ||   owner   ||   type
+          """);
+        for(Patient pet : pets) {
+          System.out.println(
+            String.format(
+              """
+              %d. %s  || %s || %s
+              """,
+              i,
+              pet.name,
+              pet.owner.getName(),
+              pet.pet
+            )
+          );
+          i++;
+        }
+    }
+
+    public static void showPatients() {
+        for(Patient pet : pets) {
+            System.out.println(
+                String.format("%s's owner is %s",
+                        pet.name, pet.owner.getName())
+            );
+        }
     }
 }

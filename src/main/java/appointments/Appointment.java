@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import employee.Employee;
+import Sanipet.Patient;
 
 public class Appointment {
     private static List<Appointment> appointments = new ArrayList<>();
@@ -12,10 +13,12 @@ public class Appointment {
     private AppointStatus status = AppointStatus.NOT_STARTED;
     private final LocalDate date;
     private final Employee specialist;
+    private final Patient pet;
 
-    public Appointment(AppointType type, LocalDate date, Employee especialist) {
+    public Appointment(Patient pet, AppointType type, LocalDate date, Employee especialist) {
         this.type = type;
         this.date = date;
+        this.pet = pet;
         this.specialist =  especialist;
         appointments.add(this);
     }
@@ -31,7 +34,7 @@ public class Appointment {
     public static List<Appointment> getAppointments() {
         return appointments;
     }
-    
+
     public static List<Appointment> filterAppointmentsByDate(LocalDate date) {
         List<Appointment> filteredAppointments = new ArrayList<>();
         for(Appointment apt : appointments) {
